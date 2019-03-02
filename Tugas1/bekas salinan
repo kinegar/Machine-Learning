@@ -1,0 +1,116 @@
+//import csv
+	csvFile, _ := os.Open("TrainsetTugas1ML.csv")
+	reader := csv.NewReader(bufio.NewReader(csvFile))
+	var trainml []Train
+	i := 0
+	for {
+
+		line, error := reader.Read()
+		if error == io.EOF {
+			break
+		} else if error != nil {
+			log.Fatal(error)
+		}
+		if i == 0 {
+			i++
+			continue
+		}
+		trainml = append(trainml, Train{
+			Id:           line[0],
+			Age:          line[1],
+			Workclass:    line[2],
+			Marital:      line[3],
+			Occupation:   line[4],
+			Relationship: line[5],
+			Hour:         line[6],
+			Income:       line[7],
+		})
+	}
+
+
+pAdultR = fAdultR / (fAdultR + fOldR + fYoungR)
+	var pOldR = fOldR / (fAdultR + fOldR + fYoungR)
+	var pYoungR = fYoungR / (fAdultR + fOldR + fYoungR)
+
+	var pAdultP = fAdultP / (fAdultP + fOldP + fYoungP)
+	var pOldP = fOldP / (fAdultP + fOldP + fYoungP)
+	var pYoungP = fYoungP / (fAdultP + fOldP + fYoungP)
+
+
+for j := 0; j < 160; j++ {
+		//freq age & class
+		if trainml[j].Income == ">50K" {
+			if trainml[j].Age == "young" {
+				fYoungR++
+			}
+			if trainml[j].Age == "adult" {
+				fAdultR++
+			}
+			if trainml[j].Age == "old" {
+				fOldR++
+			}
+		} else {
+			if trainml[j].Age == "young" {
+				fYoungP++
+			}
+			if trainml[j].Age == "adult" {
+				fAdultP++
+			}
+			if trainml[j].Age == "old" {
+				fOldP++
+			}
+		}
+
+	}
+
+	for j := 0; j < 160; j++ {
+		//freq workclass & class
+		if trainml[j].Income == ">50K" {
+			if trainml[j].Workclass == "Private" {
+				fPrivateR++
+			}
+			if trainml[j].Workclass == "Self-emp-not-inc" {
+				fSelfR++
+			}
+			if trainml[j].Workclass == "Local-gov" {
+				fGovR++
+			}
+		} else {
+			if trainml[j].Workclass == "Private" {
+				fPrivateP++
+			}
+			if trainml[j].Workclass == "Self-emp-not-inc" {
+				fSelfP++
+			}
+			if trainml[j].Workclass == "Local-gov" {
+				fGovP++
+			}
+		}
+
+	}
+
+	for j := 0; j < 160; j++ {
+		//freq education & class
+		if trainml[j].Income == ">50K" {
+			if trainml[j].Education == "Some-college" {
+				fSomeR++
+			}
+			if trainml[j].Education == "HS-grad" {
+				fGradR++
+			}
+			if trainml[j].Education == "Bachelors" {
+				fBachR++
+			}
+		} else {
+			if trainml[j].Education == "Some-college" {
+				fSomeP++
+			}
+			if trainml[j].Education == "HS-grad" {
+				fGradP++
+			}
+			if trainml[j].Education == "Bachelors" {
+				fBachP++
+			}
+		}
+
+	}
